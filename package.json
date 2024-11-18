@@ -1,0 +1,17 @@
+{
+  "name": "puppettv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1",
+    "puppeteer": "^23.8.0",
+    "puppeteer-stream": "^3.0.19"
+  }
+}
