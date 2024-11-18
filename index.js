@@ -5,7 +5,6 @@ import log from './log.js';
 
 const app = express();
 const port = config.port;
-const logoURL = 'https://www.digionline.ro/static/theme-ui-frontend/bin/images/footer/'
 
 app.get('/stream/playlist.m3u', (req, res) => {
     let m3uContent = '#EXTM3U\r\n';
