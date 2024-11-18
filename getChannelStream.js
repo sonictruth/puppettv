@@ -31,7 +31,7 @@ export default async function getChannelStream(channel = 'ncn-tv') {
     await page.addStyleTag({ content: css });
     const stream = await getStream(page, { audio: true, video: true });
     stream.on('close', () => {
-        console.log('Stream destroyed');
+        console.log('Page closed');
         page.close();
     });
     return stream;

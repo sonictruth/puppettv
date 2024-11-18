@@ -14,19 +14,20 @@ app.get('/playlist.m3u', (req, res) => {
     }
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
     res.send(m3uContent);
+    console.log('Playlist sent');
 });
 
 app.get('/stream/:channelId', async (req, res) => {
     try {
         const channelId = req.params.channelId;
-
+        console.log('Fetching stream for channel:', channelId);
         res.setHeader('Content-Type', 'video/webm');
 
         const stream = await getChannelStream(channelId);
         stream.pipe(res);
 
         req.on('close', () => {
-            console.log('Connection closed');
+            console.log('Connection closed' + channelId);
             stream.destroy();
         });
 
