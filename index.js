@@ -12,7 +12,7 @@ app.get('/stream/playlist.m3u', (req, res) => {
     for (const channel of config.channels) {
         const streamUrl = `http://${req.headers.host}/stream/${channel.id}` ;
         
-        m3uContent += `#EXTINF:-1, TVG-ID="${channel.id}" tvg-name="${channel.name}"  \r\n`;
+        m3uContent += `#EXTINF:-1, TVG-TYPE="${channel.group}"  TVG-GROUP="${channel.group}" TVG-ID="${channel.id}"  TVG-NAME="${channel.name}" TVG-LOGO="${channel.logo}" \r\n`;
         m3uContent += `${streamUrl}\r\n`;
     }
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
