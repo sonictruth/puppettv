@@ -5,12 +5,14 @@ import log from './log.js';
 
 const app = express();
 const port = config.port;
+const logoURL = 'https://www.digionline.ro/static/theme-ui-frontend/bin/images/footer/'
 
-app.get('/playlist.m3u', (req, res) => {
+app.get('/stream/playlist.m3u', (req, res) => {
     let m3uContent = '#EXTM3U\r\n';
     for (const channel of config.channels) {
-        const streamUrl = `http://${req.headers.host}/stream/` + channel.id;
-        m3uContent += `#EXTINF:-1,${channel.name}\r\n`;
+        const streamUrl = `http://${req.headers.host}/stream/${channel.id}` ;
+        
+        m3uContent += `#EXTINF:-1, TVG-ID="${channel.id}" tvg-name="${channel.name}"  \r\n`;
         m3uContent += `${streamUrl}\r\n`;
     }
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
