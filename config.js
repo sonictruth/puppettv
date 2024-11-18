@@ -80,8 +80,6 @@ export default {
     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     defaultViewport: {
         width: 640,
-        height: 380,
+        height: 360,
     },
 }
-
-
