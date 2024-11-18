@@ -30,7 +30,10 @@ export default async function getChannelStream(channelId = 'ncn-tv') {
     await page.setCookie(...cookies);
     await page.goto('https://www.digionline.ro/stiri/' + channelId);
     await page.addStyleTag({ content: css });
-    const stream = await getStream(page, { audio: true, video: true });
+    const stream = await getStream(page, { 
+        audio: true, video: true,
+        mimeType: 'video/webm;codecs=H264,pcm',
+    });
     stream.on('close', () => {
         log(channelId + ' page closed');
         page.close();

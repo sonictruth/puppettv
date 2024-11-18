@@ -132,6 +132,7 @@ export default {
         { group: 'extern', id: 'duna-tv', logo: 'https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwcyUzQSUyRiUy/RmRvLXN0YXRpYy0wMy1jZG4ucmNzLXJk/cy5ybyUyRmRpZ2lvbmxpbmUlMkZtb2Jp/bGUtY29udGVudCUyRnYxMyUyRmxvZ28l/MkZhcHAlMkZkYXJrdHYlMkZsb2dvX2lv/c19hbmRyb2lkX2R1bmEucG5nJTNGYSUz/RDEmaGFzaD00ZmM5M2JkMTAxZWIwOGMyYTZmMDlhZGUwNDcyNzgxNw==.png', name: 'Duna TV' },
         { group: 'extern', id: 'france-24', logo: 'https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwcyUzQSUyRiUy/RmRvLXN0YXRpYy0wMy1jZG4ucmNzLXJk/cy5ybyUyRmRpZ2lvbmxpbmUlMkZtb2Jp/bGUtY29udGVudCUyRnYxMiUyRmltYWdl/cyUyRmRyb2lkJTJGbG9nb190dl9jaGFu/bmVsX2V4dGVybl9mcmFuY2UyNC5wbmcl/M0ZhJTNEMSZoYXNoPTM5MzY1Zjc5ZjlkZTkwMTgyZmQ0Yzc5Mjk1YmY1OTc1.png', name: 'France 24' },
     ],
+    publicPath: 'http://localhost:3000/',
     port: 3000,
     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     defaultViewport: {

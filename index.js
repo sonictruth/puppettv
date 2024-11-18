@@ -6,12 +6,11 @@ import log from './log.js';
 const app = express();
 const port = config.port;
 
-const playListUrl = '/playlist.m3u'
-app.get(`/stream${playListUrl}`, (req, res) => {
+app.get(`/stream/playlist.m3u`, (req, res) => {
     let m3uContent = '#EXTM3U\r\n';
     for (const channel of config.channels) {
-        const path = req.path.replace(playListUrl, '');
-        const streamUrl = `${req.protocol}://${req.headers.host}${path}/${channel.id}` ;
+
+        const streamUrl = `${config.publicPath}stream/${channel.id}` ;
         
         m3uContent += `#EXTINF:-1, TVG-TYPE="${channel.group}"  TVG-GROUP="${channel.group}" TVG-ID="${channel.id}"  TVG-NAME="${channel.name}" TVG-LOGO="${channel.logo}" \r\n`;
         m3uContent += `${streamUrl}\r\n`;
@@ -45,6 +44,6 @@ app.get('/stream/:channelId', async (req, res) => {
 })
 
 app.listen(port, () => {
-    log(`Listening on port ${port}`)
+    log(`Listening  ${config.publicPath}stream/playlist.m3u`);
 })
 
