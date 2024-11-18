@@ -1,6 +1,7 @@
 import getChannelStream from './getChannelStream.js';
 import express from 'express';
 import config from './config.js';
+import log from './log.js';
 
 const app = express();
 const port = config.port;
@@ -9,25 +10,28 @@ app.get('/playlist.m3u', (req, res) => {
     let m3uContent = '#EXTM3U\r\n';
     for (const channel of config.channels) {
         const streamUrl = `http://${req.headers.host}/stream/` + channel.id;
-        m3uContent += '#EXTINF:-1,' + channel.name + '\r\n';
-        m3uContent += streamUrl + '\r\n';
+        m3uContent += `#EXTINF:-1,${channel.name}\r\n`;
+        m3uContent += `${streamUrl}\r\n`;
     }
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
     res.send(m3uContent);
-    console.log('Playlist sent');
+    const remoteIp = req.ip;
+    log(`${remoteIp} fetching playlist`);
 });
 
 app.get('/stream/:channelId', async (req, res) => {
     try {
         const channelId = req.params.channelId;
-        console.log('Fetching stream for channel:', channelId);
+        const remoteIp = req.ip;
         res.setHeader('Content-Type', 'video/webm');
 
         const stream = await getChannelStream(channelId);
         stream.pipe(res);
 
+        log(`${remoteIp} fetching stream for channel: ${channelId}`);
+
         req.on('close', () => {
-            console.log('Connection closed' + channelId);
+            log(`${remoteIp} closed connection ${channelId}`);
             stream.destroy();
         });
 
@@ -38,6 +42,6 @@ app.get('/stream/:channelId', async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    log(`Listening on port ${port}`)
 })
 
