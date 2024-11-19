@@ -41,7 +41,7 @@ export default async function getChannelStream(channelId = 'ncn-tv') {
         mimeType: 'video/webm;codecs=H264,pcm',
         videoConstraints :{
             mandatory: {
-                frameRate: 5,
+                frameRate: { ideal: 20, max: 30 },
             },
         }
     });

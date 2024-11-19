@@ -7,13 +7,13 @@ const app = express();
 const port = config.port;
 
 app.get(`/stream/playlist.m3u`, (req, res) => {
-    let m3uContent = '#EXTM3U\r\n';
+    let m3uContent = '#EXTM3U\n';
     for (const channel of config.channels) {
 
         const streamUrl = `${config.publicPath}stream/${channel.id}` ;
         
-        m3uContent += `#EXTINF:-1, TVG-TYPE="${channel.group}"  TVG-GROUP="${channel.group}" TVG-ID="${channel.id}"  TVG-NAME="${channel.name}" TVG-LOGO="${channel.logo}" \r\n`;
-        m3uContent += `${streamUrl}\r\n`;
+        m3uContent += `#EXTINF:-1,"${channel.name}" TVG-TYPE=""${channel.group}"" TVG-GROUP=""${channel.group}"" TVG-ID=""${channel.id}"" TVG-NAME=""${channel.name}"" TVG-LOGO=""${channel.logo}""\n`;
+        m3uContent += `${streamUrl}\n`;
     }
     res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
     res.send(m3uContent);
