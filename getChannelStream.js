@@ -42,6 +42,9 @@ export default async function getChannelStream(channelId = 'ncn-tv') {
         videoConstraints :{
             mandatory: {
                 frameRate: 5,
+            },
+            optional: {
+                frameRate: 5,
             }
         }
     });
