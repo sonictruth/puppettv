@@ -13,13 +13,19 @@ const browser = await launch({
     defaultViewport: config.defaultViewport,
     ignoreDefaultArgs: [
         '--disable-component-update',
-        '--enable-automation'
+        '--enable-automation',
+        '--disable-gpu',
     ],
     args: [
+        '--enable-gpu',
         '--disable-infobars',
         '--headless=new',
         '--no-sandbox',
-        '--disable-setuid-sandbox'
+        '--disable-setuid-sandbox',
+        '--use-gl=angle',
+        '--use-angle=gl-egl',
+        '--use-cmd-decoder=passthrough',
+        '--ignore-gpu-blocklist',
     ]
 });
 
@@ -33,6 +39,9 @@ export default async function getChannelStream(channelId = 'ncn-tv') {
     const stream = await getStream(page, { 
         audio: true, video: true,
         mimeType: 'video/webm;codecs=H264,pcm',
+        videoConstraints :{
+             frameRate: { ideal: 12, max: 15 } ,
+        }
     });
     stream.on('close', () => {
         log(channelId + ' page closed');
