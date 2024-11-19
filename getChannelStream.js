@@ -43,9 +43,6 @@ export default async function getChannelStream(channelId = 'ncn-tv') {
             mandatory: {
                 frameRate: 5,
             },
-            optional: {
-                frameRate: 5,
-            }
         }
     });
     stream.on('close', () => {
