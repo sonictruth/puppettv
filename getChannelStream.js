@@ -8,7 +8,7 @@ import https  from 'https';
 
 const css = readFileSync('./style.css', 'utf8');
 
-const keepAliveInterval = 30 * 60 * 1000;
+const keepAliveInterval = 100 * 60 * 1000;
 
 const browser = await launch({
     headless: true,
